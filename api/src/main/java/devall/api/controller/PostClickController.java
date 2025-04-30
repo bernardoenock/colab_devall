@@ -24,7 +24,7 @@ public class PostClickController {
     @Autowired
     private PostClickRepository postClickRepository;
 
-    @GetMapping("/clique/{id}")
+    @GetMapping("/{id}/click")
     public Map<String, String> registerClick(@PathVariable Integer id) {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Post not found with id " + id));
