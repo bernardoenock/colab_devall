@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchData } from '../data/fetchData';
+import { fetchData, getUrl } from '../data/fetchData';
 import { Post } from '../interfaces/PostInterface';
 import './ListPosts.css';
 
@@ -22,8 +22,9 @@ export function ListPosts() {
       });
   }, []);
 
-  const handlePostClick = (id: number) => {
-    const url = `https://api.devall.com.br/api/v2/post/${id}/click`;
+  const handlePostClick = async (id: number) => {
+    // const url = `https://api.devall.com.br/api/v2/post/${id}/click`;
+    const { url } = await getUrl(id)
     window.open(url, '_blank');
   };
 
