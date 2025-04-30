@@ -1,0 +1,11 @@
+{
+  "name": "colab-devall",
+  "version": "1.0.0",
+  "description": "Plataforma para compartilhar artigos técnicos sobre desenvolvimento de software",
+  "scripts": {
+    "avaliar": "docker-compose -f api/compose.yaml up -d && sleep 180 && docker-compose -f client/docker-compose.yml up -d",
+    "limpar": "docker-compose -f client/docker-compose.yml down && docker-compose -f api/compose.yaml down"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
