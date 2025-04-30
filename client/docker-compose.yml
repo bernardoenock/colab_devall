@@ -1,0 +1,11 @@
+services:
+  devall-client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: devall-client
+    ports:
+      - "5173:5173"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
