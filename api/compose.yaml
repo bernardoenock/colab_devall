@@ -1,0 +1,18 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/home/gradle/project
+    ports:
+      - "8080:8080"
+    container_name: springboot-app-devall
+    environment:
+      - SPRING_DEVTOOLS_REMOTE_SECRET=mysecret
+    command: >
+      sh -c "\
+        chmod +x /home/gradle/project/gradlew && \
+        ./gradlew classes --continuous --no-daemon & \
+        ./gradlew bootRun --no-daemon\
+      "

@@ -1,0 +1,15 @@
+
+services:
+  mysql:
+    image: mysql:lts
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: devall
+      MYSQL_DATABASE: devall
+      MYSQL_USER: devall
+      MYSQL_PASSWORD: devall
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_scripts:/docker-entrypoint-initdb.d
+   

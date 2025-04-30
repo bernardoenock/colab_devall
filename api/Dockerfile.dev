@@ -1,0 +1,14 @@
+FROM gradle:8.5.0-jdk17
+
+WORKDIR /home/gradle/project
+
+COPY gradlew gradlew.bat /home/gradle/project/
+COPY gradle/wrapper/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.properties /home/gradle/project/gradle/wrapper/
+
+COPY build.gradle settings.gradle /home/gradle/project/
+
+RUN chmod +x gradlew
+
+RUN ./gradlew dependencies --no-daemon
+
+CMD ["./gradlew", "bootRun", "--no-daemon"]
