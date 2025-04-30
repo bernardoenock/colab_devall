@@ -16,3 +16,5 @@ Contributions to /dev/All 2025 — a platform for sharing and curating technical
 ## Dificuldades
 
 1) Criar uma estrutura docker para a api que reflita as alterações no projeto instantaneamente, para trazer um ambiente de desenvolvimento produtivo.
+2) Colocar o arquivo `openapi.yml` para ser visualizado como rota em `/docs`.
+3) 
