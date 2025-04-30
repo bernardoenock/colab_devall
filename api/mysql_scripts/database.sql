@@ -23,3 +23,11 @@ CREATE TABLE post (
   clicks BIGINT NOT NULL DEFAULT 0,
   FOREIGN KEY (site_id) REFERENCES site(id)
 );
+
+-- clicks
+CREATE TABLE post_click (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  post_id INT NOT NULL,
+  click_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (post_id) REFERENCES post(id)
+);
