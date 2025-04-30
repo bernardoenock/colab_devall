@@ -1,4 +1,19 @@
 services:
+  mysql:
+    image: mysql:lts
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: devall
+      MYSQL_DATABASE: devall
+      MYSQL_USER: devall
+      MYSQL_PASSWORD: devall
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_scripts:/docker-entrypoint-initdb.d
+    networks:
+      - devall-network
+
   app:
     build:
       context: .
@@ -10,9 +25,17 @@ services:
     container_name: springboot-app-devall
     environment:
       - SPRING_DEVTOOLS_REMOTE_SECRET=mysecret
+    depends_on:
+      - mysql
+    networks:
+      - devall-network
     command: >
       sh -c "\
         chmod +x /home/gradle/project/gradlew && \
         ./gradlew classes --continuous --no-daemon & \
         ./gradlew bootRun --no-daemon\
       "
+
+networks:
+  devall-network:
+    driver: bridge

@@ -1,0 +1,25 @@
+CREATE DATABASE IF NOT EXISTS devall CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE devall;
+
+-- Sites
+CREATE TABLE site (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  url VARCHAR(512) NOT NULL,
+  rss VARCHAR(512),
+  about TEXT,
+  iframe BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+-- Posts
+CREATE TABLE post (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  summary TEXT,
+  url VARCHAR(512) NOT NULL,
+  site_id INT NOT NULL,
+  index_date DATETIME NOT NULL,
+  pub_date DATETIME NOT NULL,
+  clicks BIGINT NOT NULL DEFAULT 0,
+  FOREIGN KEY (site_id) REFERENCES site(id)
+);
